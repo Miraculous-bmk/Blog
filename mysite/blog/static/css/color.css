@@ -1,0 +1,22 @@
+:root {
+    --text-color: #fff;
+    --bc-color: #ffffff;
+    --bg-color: #f08804;
+    --br-color: #d2ccc4;
+    --text-shadow: #333;
+    --bd-color: #febd69;
+    --link-color: #e73c17;
+    --black-color: #000;
+    --other-color: #95949a;
+    --blo-color: rgb(73, 101, 237) ;
+    --love-color:#ff4081;
+
+    --bu-color:#f8f9fa;
+    --b-color:#e0e0e0;
+    --ba-color:#cfd2cd;
+    --bh-color: #fdecd4;
+    --mb-color: #dee2e6;
+    --ms-color: #020202;
+    --box-color: rgb(252, 196, 124);
+    --input-color: #8d8989;
+}
