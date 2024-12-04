@@ -1,0 +1,98 @@
+
+/* Apply Dark Mode Styles based on .dark-theme class */
+body.dark-theme {
+    background-color: var(--bc-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .header {
+    background-color: var(--main-color-dark);
+}
+
+body.dark-theme .navbar.header_lay {
+    background: var(--main-color-dark);
+}
+
+body.dark-theme .logo-x {
+    background: var(--muted-color-dark);
+}
+
+body.dark-theme .logo-text {
+    color: var(--main-color);
+}
+ 
+body.dark-theme .menu a {
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .mode-toggle i {
+    color: var(--text-color-dark);
+}
+
+body.dark-theme #content{
+    background-color: var(--input-color-dark);
+}
+
+body.dark-theme #sidebar {
+    background-color: var(--main-color-dark);
+}
+
+body.dark-theme .footer {
+    background-color: var(--footer-bg-dark);
+    color: var(--footer-text-dark);
+}
+
+body.dark-theme .box a {
+    color: var(--link-color-dark);
+}
+
+body.dark-theme .social-links li .fab {
+    color: var(--text-color-dark);
+}
+
+/* Blog-specific Styles */
+body.dark-theme .post,
+body.dark-theme .similar,
+body.dark-theme .comment-item {
+    background-color: var(--bc-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .comment-body,
+body.dark-theme .list .blog-title h1 {
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .list .tags a {
+    color: var(--link-color-dark);
+}
+
+body.dark-theme .pagination a,
+body.dark-theme .pagination span {
+    background-color: var(--main-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-theme .pagination a:hover {
+    color: var(--link-color-dark);
+}
+
+body.dark-theme .post-detail .post-title h1,
+body.dark-theme .post-detail .similar-title,
+body.dark-theme .post-detail .comment-header,
+body.dark-theme .add-comment-section .add-comment-title{
+    color: var(--title-color-dark);
+}
+
+body.dark-theme .post-detail .post-date{
+    color: var(--link-color-dark);
+}
+
+body.dark-theme .post-detail .body-post{
+    color: var(--text-color);
+}
+
+body.dark-theme .footer-bottom {
+    background-color: var(--main-color-dark);
+    color: var(--footer-text-dark);
+}

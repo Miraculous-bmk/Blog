@@ -5,55 +5,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {% block title %}{% endblock %}</title>
-    
+    <title>{% block title %}Mazzy Blog{% endblock %}</title>
     {% load static %}
-
-    <link href="{% static './css/blog.css' %}" rel="stylesheet">
+    <!-- css style -->
+    <link rel="stylesheet" href="{% static './css/blog.css' %}">
     <link rel="stylesheet" href="{% static './css/color.css' %}">
+    <link rel="stylesheet" href="{% static './css/theme.css' %}">
+    <link rel="stylesheet" href="{% static './css/layout.css' %}">
+    <!-- Link style for icon, bootstrap, and fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <!-- Header Section -->
     <div class="header">
         <nav class="navbar header_lay navbar-expand-lg">
-           <div class="logo-x">
+            <div class="logo-x">
+                <div class="logo-symbol">
+                    <div class="icon-pen"></div>
+                    <div class="icon-m">
+                        <span class="line left"></span>
+                        <span class="line right"></span>
+                        <div class="diamond"></div>
+                    </div>
+                </div>
                 <span class="logo-text">Mazzy blog</span>
-                <div class="logo-icon"></div>
-            </div> 
-            <div class="posts">
-                <p>
-                    <a class="h-text">This is my blog:</a>
-                    I've written {% total_posts %} posts so far.
-                </p>
+            
             </div>
-        </nav>   
+
+            <div class="menu">
+                <a href="{% url 'blog:post_list' %}">Home</a>
+                <a href="{% url 'blog:about' %}">About</a>
+                <a href="{% url 'blog:contact' %}">Contact</a>
+            </div>
+            <div class="side">
+                <div class="posts">
+                    <p>
+                        <span class="h-text">This is my blog:</span>
+                        I've written <strong>{% total_posts %}</strong> posts so far.
+                    </p>
+                </div>
+
+                <!-- Dark/Light Mode Toggle Icon -->
+                <div class="mode-toggle">
+                    <i id="mode-icon" class="fas fa-sun"></i>
+                </div>
+            </div>
+        </nav>
     </div>
-    
+
+    <!-- Main Content Area -->
     <div class="all_basic">
-        <div id="content">
+        <div id="content" class="col-md-8">
             {% block content %}
+            <!-- Blog content will go here -->
             {% endblock %}
         </div>
         <div id="sidebar">
-            <div class="tag">
-              <h2>Blog hister</h2>  
+            <div class="tag mb-4">
+                <h2>Blog History</h2>
             </div>
             <div class="box">
-
-                <h3>Latest posts</h3>
+                <p>
+                    <a href="{% url 'blog:post_feed' %}" class="text-decoration-none">
+                        Subscribe to my RSS feed
+                    </a>
+                </p>
+                <h3>Latest Posts</h3>
                 {% show_latest_posts 3 %}
 
-                <h3>Most commented posts</h3>
+                <h3>Most Commented Posts</h3>
                 {% get_most_commented_posts as most_commented_posts %}
-                
-                <ul>
+
+                {% if most_commented_posts %}
+                <ul class="box-list">
                     {% for post in most_commented_posts %}
                     <li>
-                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        <a href="{{ post.get_absolute_url }}" class="link-bag">{{ post.title }}</a>
                     </li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <p>No posts available.</p>
+                {% endif %}
             </div>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="footer bg-dark text-light ">
+        <div class="footer-row">
+            <!-- About Section -->
+            <div class="col-form col-md-8 ">
+                <div class="go-to">
+                    <h5>About Mazzy Blog</h5>
+                </div>
+                <div class="platform">
+                    <p>Mazzy Blog is your go-to platform for insightful posts on various topics. </p>
+                    <p> connected for regular updates.</p>
+                </div>
+            </div>
+
+            <!-- Social Links Section -->
+            <div class="col-md-4 social">
+                <div class="go-to">
+                    <h5>Follow Us</h5>
+                </div>
+                <ul class="social-links ">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mazzy Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="{% static './js/blogs.js' %}"></script>
 </body>
+
 </html>

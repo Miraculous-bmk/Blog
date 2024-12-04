@@ -1,22 +1,30 @@
 :root {
-    --text-color: #fff;
-    --bc-color: #ffffff;
-    --bg-color: #f08804;
-    --br-color: #d2ccc4;
-    --text-shadow: #333;
-    --bd-color: #febd69;
-    --link-color: #e73c17;
-    --black-color: #000;
-    --other-color: #95949a;
-    --blo-color: rgb(73, 101, 237) ;
-    --love-color:#ff4081;
-
-    --bu-color:#f8f9fa;
-    --b-color:#e0e0e0;
-    --ba-color:#cfd2cd;
-    --bh-color: #fdecd4;
-    --mb-color: #dee2e6;
-    --ms-color: #020202;
-    --box-color: rgb(252, 196, 124);
-    --input-color: #8d8989;
+    --main-color: #172539;/* Primary site color */
+    --text-color: #ffffff; /* Text color on dark backgrounds */
+    --bc-color: #f9fafb; /* Light neutral background */
+    --link-color: #009688;/* Links and accents */
+    --footer-bg: #2d2d2d;/* Footer background */
+    --footer-text: #ffffff;/* Footer text color */
+    --bd-color: #333; /* Mid-gray for borders */
+    --near-black: #101010; /* Near-black for intense areas */
+    --black-color: #000000; /* True black for contrast */  
+    --other-color: #868686; /* Neutral gray for secondary text */
+    --input-color: #bfbebe; 
+    --soft-color: rgba(255, 255, 255, 0.8);/* Softer gray for input fields */
+    --muted-color: #95949a;     /* Muted text, secondary elements */
+    /* Miscellaneous */
+    --success-color: #2ecc71; /* Green for success messages */
+    --error-color: #e74c3c; /* Red for error messages */
+    --warning-color: #f39c12; /* Orange for warnings */
+    /* Color variables for dark mode */
+    --main-color-dark: #1a1a1a;  /* Primary site color (dark mode) */
+    --text-color-dark: #e1e1e1;  /* Text color (dark mode) */
+    --bc-color-dark: #121212;    /* Dark background (dark mode) */
+    --link-color-dark: #4db8b8;  /* Links and accents (dark mode) */
+    --footer-bg-dark: #121212;   /* Footer background (dark mode) */
+    --footer-text-dark: #e1e1e1; /* Footer text color (dark mode) */
+    --muted-color-dark: #b3b3b3;  /* Muted text (dark mode) */
+    --input-color-dark: #333333;  /* Input fields (dark mode) */
+    --title-color-dark: #dcdcdc; /* Light gray */
+    
 }
