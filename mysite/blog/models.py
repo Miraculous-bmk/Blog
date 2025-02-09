@@ -55,3 +55,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
+
+class Tutorial(models.Model):
+    image = models.ImageField(upload_to='static/tutorial', null=True, blank=True) 
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=250)
+    link = models.URLField(null=True, blank=True)
+    
+    def __str__ (self ):
+        return self.title
