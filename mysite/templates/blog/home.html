@@ -46,7 +46,6 @@
       {% for post in recent_posts %}
         <div class="article">
           <div class="article-card">
-            <!-- Left-side text -->
             <div class="info">
               <h3>
                 <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
@@ -59,7 +58,6 @@
               Published on {{ post.publish|date:"M d, Y" }}
             </div>
           </div>
-          <!-- Right-side image -->
           {% if post.image %}
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
           {% else %}
@@ -81,7 +79,7 @@
       {% for author in featured_authors %}
         <div class="col-md-3 text-center mb-4">
           <!-- If your User model has a profile picture, show it here:
-               <img src="{{ author.profile.picture.url }}" alt="{{ author.username }}" class="rounded-circle mb-3" style="width:100px;height:100px;object-fit:cover;">
+               <img src="{{ author.profile.picture.url }}" alt="{{ author.username }}" class="rounded-circle">
           -->
           <h5>{{ author.username }}</h5>
           <!-- Show the post count or something else:
@@ -110,5 +108,4 @@
   </div>
 </section>
 <!-- End Recent Comments -->
-
 {% endblock %}

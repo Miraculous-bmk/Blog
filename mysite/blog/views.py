@@ -8,13 +8,7 @@ from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.views.decorators.http import require_POST
-from django.contrib.auth.models import User  # Only if you want to display authors
-
-# views.py
-from django.shortcuts import render, get_object_or_404
-from django.db.models import Count
-from django.contrib.auth.models import User
-from .models import Post, Comment
+from django.contrib.auth.models import User  
 
 def hero(request):
     categories = [choice[0] for choice in Post.CategoryChoices.choices]
