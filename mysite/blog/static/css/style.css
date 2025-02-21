@@ -88,20 +88,24 @@ body {
     padding-right: 30px;
     border: 2px solid var(--link-color);
     border-radius: 10px;
-    width: 15rem;
+    width: 20rem;
     outline: none;
 }
 
 .search-form button {
     position: absolute;
-    right: 5px;
+    right: 7px;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--link-color);
     border: none;
-    color: var(--rt-color);
     cursor: pointer;
     font-size: 1em;
+}
+
+.search-form button img {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .nav-extras a img {

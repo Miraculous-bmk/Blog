@@ -37,7 +37,9 @@
                 <!-- Search Bar -->
                 <form class="search-form" action="{% url 'blog:search' %}" method="GET" >
                     <input class="form-control me-2" type="text" name="q" placeholder="Search..." required>
-                    <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-outline-success" type="submit">
+                        <img src="{% static 'image/link/search.png' %}" alt="search Icon" />
+                    </button>
                 </form>        
 
                 <!-- Optional: user icon / search / etc. -->
