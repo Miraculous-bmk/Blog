@@ -1,4 +1,5 @@
 {% load blog_tags %}
+{% load static %}
 <!-- ========== HEADER ========== -->
 <div class="header">
     <nav class="navbar header_lay navbar-expand-lg">
@@ -41,7 +42,9 @@
 
                 <!-- Optional: user icon / search / etc. -->
                 <div class="nav-extras">
-                    <a href="#" class="user-icon"><i class="fas fa-user"></i></a>
+                    <a href="#" class="user-icon">
+                        <img src="{% static 'image/link/user (1).png' %}" alt="user Icon" />
+                    </a>
                 </div>
 
                 <div class="posts">

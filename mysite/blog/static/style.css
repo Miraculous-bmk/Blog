@@ -104,10 +104,18 @@ body {
     font-size: 1em;
 }
 
-.user-icon a {
-    text-decoration: none;
-    color: var(--link-color);
-    font-size: 1.5em;
+.nav-extras a img {
+  width: 25px;
+  /* background-color: var(--text-color); */
+  height: auto; 
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Optional: Change opacity on hover */
+.nav-extras a:hover img {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .posts p {
@@ -249,14 +257,18 @@ body {
   margin-bottom: 10px;
 }
 
-.social-icons li a {
-  color: var(--text-color);
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+/* Style for social icon images in the footer */
+.social-icons li a img {
+  width: 25px;    
+  height: auto; 
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.social-icons li a:hover {
-  color: var(--box-color); 
+/* Optional: Change opacity on hover */
+.social-icons li a:hover img {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .content-box{

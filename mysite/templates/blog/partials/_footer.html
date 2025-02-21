@@ -1,3 +1,4 @@
+{% load static %}
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer text-center py-4 mt-5">
    
@@ -36,15 +37,35 @@
                 {% include "blog/post/includes/language.html" %}
             </div>
             <p class="inc">
-            &copy; 2024 Brand, Inc. • Privacy • Terms • Sitemap
+                &copy; 2024 Brand, Inc. • Privacy • Terms • Sitemap
             </p>
             <ul class="social-icons">
-            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
-            </ul>
+                <li>
+                  <a href="#" aria-label="Twitter">
+                    <img src="{% static 'image/link/twitter.png' %}" alt="Twitter Icon" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Facebook">
+                    <img src="{% static 'image/link/facebook.png' %}" alt="Facebook Icon" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Instagram">
+                    <img src="{% static 'image/link/instagram.png' %}" alt="Instagram Icon" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" aria-label="LinkedIn">
+                    <img src="{% static 'image/link/linkedin.png' %}" alt="LinkedIn Icon" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" aria-label="YouTube">
+                    <img src="{% static 'image/link/youtube.png' %}" alt="YouTube Icon" />
+                  </a>
+                </li>
+            </ul>              
         </div>
     </div>
 </footer>
