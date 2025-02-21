@@ -1,0 +1,50 @@
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer text-center py-4 mt-5">
+   
+    <!-- Newsletter Subscription -->
+    <section class="newsletter-subscribe">
+        <div class="container">
+            <h2>Subscribe to our newsletter</h2>
+            <form action="#" method="POST">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="footer-content container">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="footer-brand">
+                <!-- Mazzy Logo -->
+                {% include "blog/partials/logo.html" %}
+            </div>
+            <ul class="footer-nav">
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="language-bar">
+                {% include "blog/post/includes/language.html" %}
+            </div>
+            <p class="inc">
+            &copy; 2024 Brand, Inc. • Privacy • Terms • Sitemap
+            </p>
+            <ul class="social-icons">
+            <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

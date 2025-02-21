@@ -11,11 +11,22 @@ class PublishedManager(models.Manager):
             .filter(status=Post.Status.PUBLISHED)
 
 class Post(models.Model):
+    class CategoryChoices(models.TextChoices):
+        LIFESTYLE = 'Lifestyle', 'Lifestyle'
+        TRAVEL = 'Travel', 'Travel'
+        FOOD = 'Food', 'Food'
+        HEALTH = 'Health', 'Health'
+        TECHNOLOGY = 'Technology', 'Technology'
+
+    category = models.CharField(max_length=20, choices=CategoryChoices.choices,
+        default=CategoryChoices.LIFESTYLE
+    )
     
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
 
+    image = models.ImageField(upload_to='posts/%Y/%m/%d/', blank=True, null=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')

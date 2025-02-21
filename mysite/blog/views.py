@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
+from django.shortcuts import render
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
@@ -7,6 +8,36 @@ from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User  # Only if you want to display authors
+
+# views.py
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Count
+from django.contrib.auth.models import User
+from .models import Post, Comment
+
+def hero(request):
+    categories = [choice[0] for choice in Post.CategoryChoices.choices]
+    selected_category = request.GET.get('category')
+    if selected_category in categories:
+        recent_posts = Post.published.filter(category=selected_category).order_by('-publish')[:4]
+    else:
+        recent_posts = Post.published.order_by('-publish')[:4]
+        selected_category = None 
+    featured_authors = (
+        User.objects
+        .annotate(total_posts=Count('blog_posts'))
+        .order_by('-total_posts')[:4]
+    )
+    recent_comments = Comment.objects.select_related('post').order_by('-created')[:10]
+
+    return render(request, 'blog/home.html', {
+        'categories': categories,
+        'selected_category': selected_category,
+        'recent_posts': recent_posts,
+        'featured_authors': featured_authors,
+        'recent_comments': recent_comments,
+    })
 
 # Create your views here.
 class PostListView(ListView):
@@ -40,6 +71,11 @@ class PostListView(ListView):
     def get_queryset(self):
         # Retrieve all published posts
         return Post.published.all()
+
+def search(request):
+    query = request.GET.get('q', '')
+    results = Post.objects.filter(title__icontains=query)
+    return render(request, 'blog/post/search_results.html', {'results': results, 'query': query})
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
