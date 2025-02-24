@@ -39,16 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
-    'taggit',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'taggit',
+    'blog.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
+    'authors.apps.AuthorsConfig',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.locale.LocaleMiddleware',  
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -126,22 +128,27 @@ USE_TZ = True
 
 USE_L10N = True
 
-# Define available languages
+# List all available languages:
 LANGUAGES = [
     ('en', 'English'),
-    ('es', 'Spanish'),
-    ('fr', 'French'),
-    # Add more as needed
+    ('es', 'Español'),
+    ('fr', 'Français'),
+    ('de', 'Deutsch'),
+    ('it', 'Italiano'),
+    ('pt', 'Português'),
+    ('ru', 'Русский'),
+    ('ja', '日本語'),
+    ('ko', '한국어'),
+    ('zh-hans', '中文（简体）'),
+    ('zh-hant', '中文（繁體）'),
+    ('ar', 'العربية'),
 ]
-
-import os
-from pathlib import Path
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -149,6 +156,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

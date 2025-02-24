@@ -1,0 +1,86 @@
+mysite/
+├── manage.py
+├── requirements.txt
+├── locale/                          # Localization files (if any)
+├── media/                           # Uploaded media (profile pics, article images, etc.)
+├── mysite/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── blog/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── accounts/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── authors/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── templates/                       # Global templates folder for shared layout files
+│   ├── pagination.html
+│   ├── website/ 
+│   │   ├── base.html
+│   │   ├── home.html
+│   │   └── partials/ 
+│   │       ├── _navbar.html 
+│   │       ├── language.html
+│   │       ├── logo.html
+│   │       ├── search_results.html
+│   │       └── footer.html  # and more...
+│   ├── blog/
+│   |   ├── website/
+│   │   |   ├── list.html
+│   │   |   ├── detail.html
+│   │   |   ├── lastest_posts.html
+│   │   ├── comments.html
+│   │   ├── share.html
+│   │   └── includes/          # Optional: app-specific templates
+│   │       └── comment_form.html  # and more...
+│   ├── accounts/
+│   │   ├── login.html
+│   │   ├── signup.html
+│   │   └── profile_update.html
+│   │   ├── detail.html
+│   │   └── profile.html
+│   └── authors/
+│       ├── author_list.html
+│       ├── signup.html
+│       └── profile_update.html
+│       ├── author_list.html
+│       ├── dashboard.html
+│       └── profile.html
+│       ├── create_post.html
+│       └── ...other author templates...
+├── static/                          # Global static folder
+│   ├── css/
+│   │   ├── styles.css
+│   │   └── authors.css
+│   ├── js/
+│   │   └── script.js
+│   └── image/
+│       ├── link/
+│       │   ├── user (1).png
+│       │   └── search.png
+│       └── ...other images...
+└── media/                           # For user-uploaded media files (profile pics, article images, etc.)
+    └── ... 

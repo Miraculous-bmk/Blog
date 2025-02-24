@@ -1,0 +1,22 @@
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" id="language" onchange="this.form.submit()">
+        <option value="en" {% if CURRENT_LANGUAGE == 'en' %}selected{% endif %}>English</option>
+        <option value="es" {% if CURRENT_LANGUAGE == 'es' %}selected{% endif %}>Español</option>
+        <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif %}>Français</option>
+        <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>Deutsch</option>
+        <option value="it" {% if LANGUAGE_CODE == 'it' %}selected{% endif %}>Italiano</option>
+        <option value="pt" {% if LANGUAGE_CODE == 'pt' %}selected{% endif %}>Português</option>
+        <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>Русский</option>
+        <option value="ja" {% if LANGUAGE_CODE == 'ja' %}selected{% endif %}>日本語</option>
+        <option value="ko" {% if LANGUAGE_CODE == 'ko' %}selected{% endif %}>한국어</option>
+        <option value="zh-hans" {% if LANGUAGE_CODE == 'zh-hans' %}selected{% endif %}>中文（简体）</option>
+        <option value="zh-hant" {% if LANGUAGE_CODE == 'zh-hant' %}selected{% endif %}>中文（繁體）</option>
+        <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+    </select>
+    <noscript>
+        <button type="submit">{% trans "Change" %}</button>
+    </noscript>
+</form>

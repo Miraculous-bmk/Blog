@@ -1,0 +1,19 @@
+{% for author in authors %}
+  <div class="author-card">
+    <div class="author-info">
+      <img src="{{ author.profile.image.url|default_if_none:static('image/link/default-author.png') }}" alt="{{ author.username }}'s Picture">
+      <h3>{{ author.get_full_name }}</h3>
+      <!-- Follow/Unfollow Form -->
+      <form action="{% url 'accounts:follow_author' author_id=author.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">
+          {% if author in request.user.profile.followed_authors.all %}
+            Unfollow
+          {% else %}
+            Follow
+          {% endif %}
+        </button>
+      </form>
+    </div>
+  </div>
+{% endfor %}

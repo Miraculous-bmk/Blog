@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Your Dashboard</h2>
+<p>Welcome, {{ request.user.username }}. Here are your posts:</p>
+<ul>
+  {% for post in posts %}
+    <li>
+      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> -
+      <a href="{% url 'authors:edit_post' post.id %}">Edit</a> |
+      <a href="{% url 'authors:delete_post' post.id %}">Delete</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'authors:create_post' %}">Create a new post</a>
+{% endblock %}
