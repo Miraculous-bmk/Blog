@@ -1,0 +1,89 @@
+{% load blog_tags %}
+{% load static %}
+<!-- ========== HEADER ========== -->
+<div class="header">
+    <nav class="navbar header_lay navbar-expand-lg">
+        <div class="nav-brand">
+            <a class="navbar-brand fw-bold" href="{% url 'blog:hero' %}">
+                <!-- Mazzy Logo -->
+                {% include "website/partials/logo.html" %}
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collaps"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collaps navbar-collapse" id="navbarSupportedContent">
+            <div claess="right-sidebar">
+                <div class="nav-bar" id="navbarSupportedContent">
+                    <ul class="nav-links ms-auto ">
+                        <li class="nav-item">
+                            <a href="{% url 'blog:hero' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'blog:post_list' %}">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Authors</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="left-sidebar">
+                <!-- Search Bar -->
+                <form class="search-form" action="{% url 'blog:search' %}" method="GET" >
+                    <input class="form-control me-2" type="text" name="q" placeholder="Search..." required>
+                    <button class="btn submit" type="submit">
+                        <img src="{% static 'image/link/search.png' %}" alt="search Icon" />
+                    </button>
+                </form>        
+
+                <!-- Optional: user icon / etc. -->
+                <div class="nav-extras">
+                  {% if request.user.is_authenticated %}
+                    <div class="dropdown-user">
+                      <!-- Remove Bootstrap attributes for a custom solution -->
+                      <a href="#" class="user-icon">
+                        {% if request.user.profile.image %}
+                          <img src="{{ request.user.profile.image.url }}" alt="{{ request.user.username }}'s Profile Picture" class="profile-pic">
+                        {% else %}
+                          <img src="{% static 'image/link/user (1).png' %}" alt="Default User Icon" class="profile-pic">
+                        {% endif %}
+                      </a>
+                      <div class="custom-dropdown">
+                        <ul>
+                          <li><a class="acc-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+                          <li><a class="acc-item" href="{% url 'accounts:profile_update' %}">Edit Profile</a></li>
+                          <li><a class="acc-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="dropdown-in">
+                      <a href="#" class="user-icon">
+                        <img src="{% static 'image/link/user (1).png' %}" alt="User Icon" class="profile-pic">
+                      </a>
+                      <div class="custom-dropdown">
+                        <ul>
+                          <li><a class="acc-item" href="{% url 'accounts:login' %}">Login</a></li>
+                          <li><a class="acc-item" href="{% url 'accounts:signup' %}">Signup</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="posts">
+                    <p>
+                        <span class="h-text">This is my blog:</span>
+                        I've written {% total_posts %} posts so far.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
