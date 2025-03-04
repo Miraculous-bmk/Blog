@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>Edit Post</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="{{ post.title }}" required><br><br>
+
+    <label for="body">Content:</label>
+    <textarea name="body" id="body" required>{{ post.body }}</textarea><br><br>
+
+    <label for="category">Category:</label>
+    <select name="category" id="category" required>
+        <option value="Lifestyle" {% if post.category == 'Lifestyle' %}selected{% endif %}>Lifestyle</option>
+        <option value="Travel" {% if post.category == 'Travel' %}selected{% endif %}>Travel</option>
+        <option value="Food" {% if post.category == 'Food' %}selected{% endif %}>Food</option>
+        <option value="Health" {% if post.category == 'Health' %}selected{% endif %}>Health</option>
+        <option value="Technology" {% if post.category == 'Technology' %}selected{% endif %}>Technology</option>
+    </select><br><br>
+
+    <label for="image">Image (optional):</label>
+    <input type="file" name="image" id="image"><br><br>
+
+    <button type="submit">Update Post</button>
+</form>
+{% endblock %}

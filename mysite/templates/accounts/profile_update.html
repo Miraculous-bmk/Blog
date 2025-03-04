@@ -1,0 +1,18 @@
+{% extends 'website/base.html' %}
+{% block content %}
+<div class="profile-form">
+  <h2>Edit Your Profile</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Personal Info</legend>
+      {{ u_form.as_p }}
+    </fieldset>
+    <fieldset>
+      <legend>Profile Info</legend>
+      {{ p_form.as_p }}
+    </fieldset>
+    <button type="submit">Update Profile</button>
+  </form>
+</div>
+{% endblock %}

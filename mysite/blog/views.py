@@ -1,14 +1,15 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment
-from django.shortcuts import render
-from django.db.models import Count
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView
-from .forms import EmailPostForm, CommentForm
-from django.core.mail import send_mail
 from taggit.models import Tag
-from django.views.decorators.http import require_POST
+from .models import Post, Comment
+from django.db.models import Count
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.views.generic import ListView
 from django.contrib.auth.models import User  
+from .forms import EmailPostForm, CommentForm
+from django.views.decorators.http import require_POST
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required, permission_required
 
 def hero(request):
     categories = [choice[0] for choice in Post.CategoryChoices.choices]
@@ -25,7 +26,7 @@ def hero(request):
     )
     recent_comments = Comment.objects.select_related('post').order_by('-created')[:10]
 
-    return render(request, 'blog/home.html', {
+    return render(request, 'website/home.html', {
         'categories': categories,
         'selected_category': selected_category,
         'recent_posts': recent_posts,
@@ -69,7 +70,7 @@ class PostListView(ListView):
 def search(request):
     query = request.GET.get('q', '')
     results = Post.objects.filter(title__icontains=query)
-    return render(request, 'blog/post/search_results.html', {'results': results, 'query': query})
+    return render(request, 'website/partials/search_results.html', {'results': results, 'query': query})
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
@@ -103,36 +104,37 @@ def post_detail(request, year, month, day, post):
 
     return render(request, 'blog/post/detail.html', {'post': post, 'comments': comments, 'form':form, 'similar_posts': similar_posts})
 
+@login_required
+@permission_required('accounts.can_send_article', raise_exception=True)
 def post_share(request, post_id):
-    # Retrieve post by id
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
     form = EmailPostForm()
     sent = False
 
     if request.method == 'POST':
-    # Form was submitted
         form = EmailPostForm(request.POST)
         if form.is_valid():
-            # Form fields passed validation
             cd = form.cleaned_data
             post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = f"{cd['name']} recommends you read " f"{post.title}"
-            message = f"Read {post.title} at {post_url}\n\n" f"{cd['name']}\'s comments: {cd['comments']}"
-            send_mail(subject, message, 'mikosnetworks@gmail.com', [cd['to']])
-            sent = True
-    return render(request, 'blog/post/share.html', {'post': post,'form': form, 'sent':sent})
+            subject = f"{cd['name']} recommends you read {post.title}"
+            message = (
+                f"Read {post.title} at {post_url}\n\n"
+                f"{cd['name']}'s comments: {cd['comments']}"
+            )
 
+            sender_email = request.user.email if request.user.email else 'mikosnetworks@gmail.com'
+            send_mail(subject, message, sender_email, [cd['to']])
+            sent = True
+    return render(request, 'blog/share.html', {'post': post, 'form': form, 'sent': sent})
+
+@login_required
+@permission_required('accounts.can_comment', raise_exception=True)
 @require_POST
 def post_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
-    comment = None
-
     form = CommentForm(data=request.POST)
     if form.is_valid():
-        # Create a Comment object without saving it to the database
         comment = form.save(commit=False)
-        # Assign the post to the comment
         comment.post = post
-        # Save the comment to the database
         comment.save()
-    return render(request, 'blog/post/comment.html', {'post': post,'form': form, 'comment': comment})
+    return render(request, 'blog/comment.html', {'post': post, 'form': form, 'comment': comment})

@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h2>{{ request.user.username }}'s Profile</h2>
+{% if profile.profile_pic %}
+  <img src="{{ profile.profile_pic.url }}" alt="{{ request.user.username }}" width="150">
+{% endif %}
+<p>{{ profile.bio }}</p>
+<p>Social: <a href="{{ profile.social_link }}">{{ profile.social_link }}</a></p>
+<a href="{% url 'authors:profile_update' %}">Edit Profile</a>
+{% endblock %}

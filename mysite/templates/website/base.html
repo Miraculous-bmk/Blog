@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Mazzy Blog{% endblock %}</title>
+  
+  <!-- Your CSS files -->
+  <link href="{% static './css/style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static './css/color.css' %}">
+  <link rel="stylesheet" href="{% static './css/logo.css' %}">
+  
+   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-yH6EtZNDI8MXxNCYAbuJKmKTEj1N3q6K5kH2ztWQm2w8lkacUV3zTqaNmoMfE4BUOV+sm+FBnXot9muQ2KZfjw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"/>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  {% include 'website/partials/_navbar.html' %}
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="content-box">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  {% include 'website/partials/_footer.html' %}
+
+  <!-- Scripts -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/dropdown.js' %}"></script>
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
